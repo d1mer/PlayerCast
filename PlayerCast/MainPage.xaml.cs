@@ -24,7 +24,7 @@ namespace PlayerCast
     {
         public MainPage()
         {
-            this.InitializeComponent();
+            InitializeComponent();
         }
     }
 }

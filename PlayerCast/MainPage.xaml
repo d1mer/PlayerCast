@@ -5,10 +5,38 @@
     xmlns:local="using:PlayerCast"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:Windows10version1809="http://schemas.microsoft.com/winfx/2006/xaml/presentation?IsApiContractPresent(Windows.Foundation.UniversalApiContract, 7)"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-
-    <Grid>
-
-    </Grid>
+    
+    <!--TODO: увеличить размер иконок и шрифта в пунктах меню -->
+    <!--TODO: выбранный пункт меню должен менять цвет на текущий системный -->
+    <!--TODO: убрать закрытие панели при выборе пункта меню -->
+    
+    <NavigationView x:Name="NavView"
+                    IsSettingsVisible="True"
+                    AlwaysShowHeader="False" 
+                    Windows10version1809:PaneDisplayMode="LeftCompact">
+        <NavigationView.AutoSuggestBox>
+            <AutoSuggestBox x:Name="searchField"
+                            QueryIcon="Find"
+                            PlaceholderText="Поиск" />
+        </NavigationView.AutoSuggestBox>
+        <NavigationView.MenuItems>
+            <NavigationViewItem Icon="Library" Content="Подписки" Tag="subscriptions" />
+            <NavigationViewItem Icon="Globe" Content="Каталог" Tag="catalog" />
+            <NavigationViewItem Content="Новые эпизоды" Tag="newIssue">
+                <NavigationViewItem.Icon>
+                    <FontIcon Glyph="&#xECC5;" />
+                </NavigationViewItem.Icon>
+            </NavigationViewItem>
+            <NavigationViewItem Icon="Bullets" Content="Список воспроизведения" Tag="playlist" />
+            <NavigationViewItem Content="Избранное" Tag="favorite">
+                <NavigationViewItem.Icon>
+                    <FontIcon Glyph="&#xE728;" />
+                </NavigationViewItem.Icon>
+            </NavigationViewItem>
+            <NavigationViewItem Icon="Download" Content="Загруженные" Tag="loaded" />
+        </NavigationView.MenuItems>
+    </NavigationView>
 </Page>
