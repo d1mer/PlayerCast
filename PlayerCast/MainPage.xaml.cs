@@ -12,6 +12,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using PlayerCast.Views;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
@@ -25,6 +26,68 @@ namespace PlayerCast
         public MainPage()
         {
             InitializeComponent();
+
+            contentFrame.Navigate(typeof(Subscriptions));
         }
+
+
+        #region NavigationView events handlers
+        private void NavView_Loaded(object sender, RoutedEventArgs e)
+        {
+            foreach(NavigationViewItemBase item in NavView.MenuItems)
+            {
+                if(item is NavigationViewItem && item.Tag.ToString() == "Subscriptions_Page")
+                {
+                    NavView.SelectedItem = item;
+                    break;
+                }
+            }
+            contentFrame.Navigate(typeof(Subscriptions));
+        }
+
+
+        private void NavView_ItemInvoked(NavigationView sender, NavigationViewItemInvokedEventArgs args)
+        {
+            //if (args.IsSettingsInvoked)
+            //    contentFrame.Navigate(typeof(Settings));
+            //else
+            //{
+            //    NavigationViewItemBase item = args.InvokedItemContainer;
+
+            //    switch(item.Tag.ToString())
+            //    {
+            //        case "Subscriptions_Page":
+            //            contentFrame.Navigate(typeof(Subscriptions));
+            //            break;
+            //    }
+            //}
+        }
+       
+
+        private void NavView_SelectionChanged(NavigationView sender, NavigationViewSelectionChangedEventArgs args)
+        {
+            if (args.IsSettingsSelected)
+                contentFrame.Navigate(typeof(Settings));
+            else
+            {
+                NavigationViewItemBase item = args.SelectedItemContainer;
+                switch(item.Tag.ToString())
+                {
+                    case "Subscriptions_Page":
+                        contentFrame.Navigate(typeof(Subscriptions)); break;
+                    case "Catalog_Page":
+                        contentFrame.Navigate(typeof(Catalog)); break;
+                    case "Loaded_Page":
+                        contentFrame.Navigate(typeof(Downloads)); break;
+                    case "Favorites_Page":
+                        contentFrame.Navigate(typeof(Favourites)); break;
+                    case "NewIssue_Page":
+                        contentFrame.Navigate(typeof(NewEpisodes)); break;
+                    case "Playlist_Page":
+                        contentFrame.Navigate(typeof(Playlist)); break;
+                }
+            }
+        }
+        #endregion
     }
 }

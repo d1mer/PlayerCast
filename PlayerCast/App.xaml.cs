@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PlayerCast.Views;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -70,6 +71,8 @@ namespace PlayerCast
                     // configuring the new page by passing required information as a navigation
                     // parameter
                     rootFrame.Navigate(typeof(MainPage), e.Arguments);
+
+                    //rootFrame.Navigate(typeof(Subscriptions), e.Arguments);
                 }
                 // Ensure the current window is active
                 Window.Current.Activate();
