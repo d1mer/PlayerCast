@@ -18,6 +18,8 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using Microsoft.EntityFrameworkCore;
+using PlayerCast.Models;
 
 namespace PlayerCast
 {
@@ -34,6 +36,11 @@ namespace PlayerCast
         {
             this.InitializeComponent();
             this.Suspending += OnSuspending;
+
+            using (ChannelsContext db = new ChannelsContext())
+            {
+                //db.Database.Migrate();
+            }
         }
 
         /// <summary>
