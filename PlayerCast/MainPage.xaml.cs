@@ -14,6 +14,7 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using PlayerCast.Views;
 using Microsoft.EntityFrameworkCore;
+using PlayerCast.Utilities;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
@@ -28,26 +29,33 @@ namespace PlayerCast
         {
             InitializeComponent();
 
-            contentFrame.Navigate(typeof(Subscriptions));
+            ContentFrame.Navigate(typeof(Subscriptions));
+
+            LoadData();
+        }
+
+        public async void LoadData()
+        {
+            await GetChannelsRepository.GetChannelsList();
         }
 
 
         #region NavigationView events handlers
-        private void NavView_Loaded(object sender, RoutedEventArgs e)
+        private void NavigationView_Loaded(object sender, RoutedEventArgs e)
         {
-            foreach(NavigationViewItemBase item in NavView.MenuItems)
+            foreach(NavigationViewItemBase item in NavigationView.MenuItems)
             {
                 if(item is NavigationViewItem && item.Tag.ToString() == "Subscriptions_Page")
                 {
-                    NavView.SelectedItem = item;
+                    NavigationView.SelectedItem = item;
                     break;
                 }
             }
-            contentFrame.Navigate(typeof(Subscriptions));
+            ContentFrame.Navigate(typeof(Subscriptions));
         }
 
 
-        private void NavView_ItemInvoked(NavigationView sender, NavigationViewItemInvokedEventArgs args)
+        private void NavigationView_ItemInvoked(NavigationView sender, NavigationViewItemInvokedEventArgs args)
         {
             //if (args.IsSettingsInvoked)
             //    contentFrame.Navigate(typeof(Settings));
@@ -65,27 +73,27 @@ namespace PlayerCast
         }
        
 
-        private void NavView_SelectionChanged(NavigationView sender, NavigationViewSelectionChangedEventArgs args)
+        private void NavigationView_SelectionChanged(NavigationView sender, NavigationViewSelectionChangedEventArgs args)
         {
             if (args.IsSettingsSelected)
-                contentFrame.Navigate(typeof(Settings));
+                ContentFrame.Navigate(typeof(Settings));
             else
             {
                 NavigationViewItemBase item = args.SelectedItemContainer;
                 switch(item.Tag.ToString())
                 {
                     case "Subscriptions_Page":
-                        contentFrame.Navigate(typeof(Subscriptions)); break;
+                        ContentFrame.Navigate(typeof(Subscriptions)); break;
                     case "Catalog_Page":
-                        contentFrame.Navigate(typeof(Catalog)); break;
+                        ContentFrame.Navigate(typeof(Catalog)); break;
                     case "Loaded_Page":
-                        contentFrame.Navigate(typeof(Downloads)); break;
+                        ContentFrame.Navigate(typeof(Downloads)); break;
                     case "Favorites_Page":
-                        contentFrame.Navigate(typeof(Favourites)); break;
+                        ContentFrame.Navigate(typeof(Favourites)); break;
                     case "NewIssue_Page":
-                        contentFrame.Navigate(typeof(NewEpisodes)); break;
+                        ContentFrame.Navigate(typeof(NewEpisodes)); break;
                     case "Playlist_Page":
-                        contentFrame.Navigate(typeof(Playlist)); break;
+                        ContentFrame.Navigate(typeof(Playlist)); break;
                 }
             }
         }

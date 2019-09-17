@@ -9,15 +9,13 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
     
-    <!--TODO: увеличить размер иконок и шрифта в пунктах меню -->
-    <!--TODO: выбранный пункт меню должен менять цвет на текущий системный -->
 
-    <NavigationView x:Name="NavView"
+    <NavigationView x:Name="NavigationView"
                     IsSettingsVisible="True"
                     AlwaysShowHeader="False"
-                    Loaded="NavView_Loaded"
-                    ItemInvoked="NavView_ItemInvoked"
-                    SelectionChanged="NavView_SelectionChanged"
+                    Loaded="NavigationView_Loaded"
+                    ItemInvoked="NavigationView_ItemInvoked"
+                    SelectionChanged="NavigationView_SelectionChanged"
                     >
         <NavigationView.AutoSuggestBox>
             <AutoSuggestBox x:Name="searchField"
@@ -40,6 +38,6 @@
             </NavigationViewItem>
             <NavigationViewItem Icon="Download" Content="Загруженные" Tag="Loaded_Page" />
         </NavigationView.MenuItems>
-        <Frame x:Name="contentFrame" />
+        <Frame x:Name="ContentFrame" />
     </NavigationView>
 </Page>

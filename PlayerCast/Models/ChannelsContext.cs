@@ -9,7 +9,7 @@ namespace PlayerCast.Models
 {
     public class ChannelsContext : DbContext
     {
-        public DbSet<ChannelBasicInfo> ChannelsBasic { get; set; }
+        //public DbSet<ChannelBasicInfo> ChannelsBasic { get; set; }
         public DbSet<RequestUrl> RequestsUrl { get; set; }
 
         public ChannelsContext() => Database.EnsureCreated();
